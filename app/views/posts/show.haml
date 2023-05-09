@@ -1,0 +1,28 @@
+= link_to '<< Back to all posts', posts_path
+%h1 Post
+.post-card
+  %h3= @post.title
+  %p= @post.body
+  .action1= link_to 'Edit', edit_post_path(@post)
+  .action1= button_to 'Delete', post_path(@post), method: :delete
+.comments
+  .comments-form 
+    - comment= @comment || @post.comments.build
+    = form_with(model: [@post, comment]) do |form|
+      
+      .commenter
+        = form.label :commenter
+        = form.text_field :commenter
+        - if @comment.present?
+          - @comment.errors.full_messages_for(:commenter).each do |message|
+            .error= message
+
+      .body
+        = form.label :body
+        = form.text_area :body
+        - if @comment.present?
+          - @comment.errors.full_messages_for(:body).each do |message|
+            .error= message
+
+      .submit= form.submit
+  .comments-show

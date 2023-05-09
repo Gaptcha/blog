@@ -1,0 +1,14 @@
+%h1 Posts
+.action= link_to 'NEW', new_post_path
+- @posts.each do |post|
+  .post-card
+    %h3= post.title
+    %p= post.body
+    .action1= link_to 'View', post_path(post) 
+    .action1= link_to 'Edit', edit_post_path(post)
+    .action1= button_to 'Delete', post_path(post), method: :delete
+
+
+
+
+      
