@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
     def index
-        @posts = Post.all
+        @posts = Post.visible
     end
 
     def show
         @post = Post.find(params[:id])
+        @comments = @post.comments.visible
     end
 
     def new
@@ -49,4 +50,5 @@ class PostsController < ApplicationController
 
         redirect_to posts_path, status: :see_other
     end
+
 end

@@ -1,0 +1,4 @@
+.comment-card
+  %h3= comment.commenter
+  %p= comment.body
+  .action1= button_to 'Delete', post_comment_path(comment.post, comment), method: :delete
